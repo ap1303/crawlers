@@ -1,0 +1,51 @@
+CSC207H Fall 2010 Quiz 1 Solution
+=================================
+
+1.
+a) static, because then that variable is shared and accessible from all
+instances of the class. That means that it can be incremented in the
+constructor.
+
+b) Yes. Java scoping rules say that if a variable name is not found in an object
+(as an instance variable), then the class itself is examined to see if there is
+a static variable of that name.
+
+c) No. Only instance methods -- not instance variables, and nothing static --
+can be overriden. In all these other cases, if a variable or method of the same
+name is declared, it shadows the one in the superclass.
+
+2.
+a) ((P) a2).y
+
+b) ((C) a3).y
+
+c) It cannot be done.
+
+d) a3.r()
+
+e) For the assignment statement a3 = a1;
+     First evaluate the right-hand side -- a1's value is 0xA2 -- and then store
+     the value in the variable on the left-hand side. This place 0xA2 into a3's
+     box.
+
+   For the assignment statement a3.y = ((P) a2).y;
+     First evaluate the right-hand side -- ((P) a2).y's value is 6 -- and then
+     store the value in the variable on the left-hand side. Entertainingly, a3.y
+     and ((P) a2).y resolve to the same variable.
+
+3.
+a) It calls JFrame's constructor, which sets the title of the window.
+
+b)
+  - MooingWindow no longer implements ActionListener.
+  
+  - BListener implements ActionListener.
+  
+  - The BListener constructor needs to be told the MooingWindow, and that needs
+    to be saved as an instance variable.
+  
+  - The actionPerformed method needs to be moved to BListener, and "this"
+    replaced with the instance variable.
+  
+  - In the MooingWindow constructor, BListener needs to be instantiated and
+    added to myButton as an actionListener.

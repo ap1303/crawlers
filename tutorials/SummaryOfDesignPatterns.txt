@@ -1,0 +1,26 @@
+Summary:
+
+
+1. Observer (action A causes action B to happen) (adding Observers to our concrete Observable class)
+
+2. Iterator (returns each element in a collection in a certain order)(we do this from a separate class to de-clutter the class containing the collection)
+
+3. Strategy (isolate different strategies/algorithms inside a separate class which can be included as a class variable inside the context)(instead of two objects with the same content except for different algorithms)
+
+4. MVC (separates what the user sees (View) from the data being stored (Model) and the methods that interact with each (Controller))
+
+5. Dependency Injection (creating instances of one class elsewhere and introducing them into our other class as an argument in the constructor and/or a method)
+
+6.(a) Static Factory Method Pattern (has one factory method inside a factory class that can be instantiated anywhere, providing new instances of various subclasses)
+
+6.(b) Factory Method Pattern (same as static Factory Method Pattern, but with more than one subclass of "ShapeFactory" or whatever your Factory name is)
+
+Many patterns help us refactor code so that we extract code from class A, put it in class B, and store an instance of class B inside A. (#1 - remove the update() code, #2 - remove the next() and hasNext() methods, #3 - remove the algorithm)
+
+To Use These:
+
+- recognize a flaw that can be fixed with a pattern
+- decide on the pattern
+- figure out how to implement it 
+
+

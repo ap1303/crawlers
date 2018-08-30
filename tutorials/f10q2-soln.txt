@@ -1,0 +1,76 @@
+CSC207H Fall 2010 Quiz 5 Solution
+=================================
+
+1.
+a) No. Unless the methods are private (or default and the classes are in
+separate packages), the must both be static or both be non-static.
+
+b) No.
+
+c) A static method cannot be overridden in a subclass, only shadowed.
+   a1's type is A, so the first output is "A's m".
+   ((B) a1)'s type is B, so the second output is "B's m".
+
+d) Instance methods are overridden, so Java always uses the lowest method
+definition. Thus, both method calls call B's m, and both lines of output are
+"B's m".
+
+2.
+Benefit: This separates the controller from the view, which means we can redesign either with only minimal effects on the other.
+
+Drawback: The listener does not have access to the instance variables of the
+MapWindow; extra public methods in MapWindow may be needed.
+
+3.
+c.i = 100;
+
+  c's type is C, and so "c." takes you to the C part of the 0xBB object. That
+  i's 0 is replaced with 100.
+
+b.i = 22;
+
+  b's type is B, and so "b." takes you to the B part of the 0x12 object. There
+  is no i in that part of the object, and so the next place to look is in the B
+  class. There is no i there, so the next place to look is in the A part of
+  0x12. There is no i there, so the next place to look is in the A class, which
+  indeed has an i. That i's 0 is replaced with 22.
+
+b.m(3);
+
+  b's type is B, and so "b." takes you to the B part of the 0x12 object, and
+  there is an m there. That's the method that gets called, so on the call stack
+  draw a box for m. The scope is 0x12, type B, and there is an int i (the
+  parameter) inside it with value 3 because of it.
+
+  this.i = 3; is executed. The value of "this" is 0x12, type B, and so we look
+  for i in the B part of 0x12. As before, there is no i in that part of the
+  object, and so the next place to look is in the B class. There is no i there,
+  so the next place to look is in the A part of 0x12. There is no i there, so
+  the next place to look is in the A class, which indeed has an i. The 22 is
+  replaced with 3.
+
+  Method m is done, so cross it off the top of the stack.
+
+int i = b.f(c);
+
+  b.f(c) is a method call, and so the argument c is evaluated (value 0xBB) and
+  drawn above the call stack. Then method f is located: b's type is B, and so
+  "b." takes you to the B part of the 0x12 object. There is no f in that part of
+  the object, and so the next place to look is in the B class. There is no f
+  there, so the next place to look is in the A part of 0x12. There is no f
+  there, so the next place to look is in the A class, which indeed has an f.
+  That's the method that gets called, so on the call stack draw a box for f. The
+  scope is A (f is a static method), and there is a C c (the parameter) inside
+  it to hold the 0xBB from the argument.
+
+  return i + c.i; is executed. The expression is evaluated left to right: the
+  scope of f is A, and so the value of i is 3. c.i is evaluated next. c's type
+  is C, and so "c." takes you to the C part of 0xBB. There is an i there, with
+  value 100, and so the return value for f is 103.
+
+  The method call b.f(c) is done, so cross it off the top of the stack and
+  replace it with the return value, 103.
+
+  Now we have evaluated "b.f(c)". To finish the assignment statement, 103 is
+  placed in the local variable i in method main.
+
